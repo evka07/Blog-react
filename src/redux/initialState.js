@@ -1,5 +1,5 @@
 const initialState ={
-    blogPosts: [
+    posts: [
         {
             id: '1',
             title: 'Article title',

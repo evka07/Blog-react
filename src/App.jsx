@@ -8,6 +8,7 @@ import NotFound from "./components/pages/NotFound.jsx";
 import {Container} from "react-bootstrap";
 import NavBar from "./components/views/NavBar/NavBar.jsx";
 import Footer from "./components/views/Footer/Footer.jsx";
+import DeleteModal from "./components/views/Modal/DeleteModal.jsx";
 
 
 

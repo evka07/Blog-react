@@ -3,7 +3,7 @@ import {Button, Card, Col, ListGroup, Row} from "react-bootstrap";
 import {useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 
-const Post = () => {
+const Posts = () => {
     const posts = useSelector((state) => state.posts)
     console.log(posts)
     return (
@@ -40,4 +40,4 @@ const Post = () => {
     );
 };
 
-export default Post;
+export default Posts;

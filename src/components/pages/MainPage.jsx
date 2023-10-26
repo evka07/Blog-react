@@ -1,10 +1,10 @@
 import React from 'react';
-import Post from "../features/Post.jsx";
+import Posts from "../features/Posts.jsx";
 
 const MainPage = () => {
     return (
         <div>
-            <Post/>
+            <Posts/>
         </div>
     );
 };
