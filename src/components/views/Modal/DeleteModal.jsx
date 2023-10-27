@@ -14,7 +14,7 @@ const DeleteModal = ({show, onClose, onConfirm, handleDel}) => {
             </Modal.Header>
             <Modal.Body>Вы уверены, что хотите удалить эту публикацию?</Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={handleDe}>
+                <Button variant="secondary" onClick={handleDel}>
                     Отмена
                 </Button>
                 <Button variant="danger" onClick={onConfirm}>

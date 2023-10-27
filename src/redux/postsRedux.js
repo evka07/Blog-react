@@ -16,6 +16,8 @@ const postsReducer = (statePart = initialState.posts, action) => {
     switch (action.type) {
         case DELETE_POST:
             return statePart.filter((post) => post.id !== action.payload)
+        case ADD_POST:
+            return [...statePart, action.payload]
         default:
             return statePart;
     }

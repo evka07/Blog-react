@@ -10,7 +10,7 @@ const Posts = () => {
         <div>
             <div className={'d-flex justify-content-between align-items-center mt-5 mb-5'}>
                 <h2>All messages</h2>
-                <Button variant="outline-primary">Add post</Button>
+                <Button as={Link}  to={`/post/add`} variant="outline-primary">Add post</Button>
             </div>
             <Row>
                 {posts.map((post) => (
