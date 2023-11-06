@@ -2,10 +2,18 @@ import React from 'react';
 import {Button, Card, Col, ListGroup, Row} from "react-bootstrap";
 import {useSelector} from "react-redux";
 import {Link} from "react-router-dom";
+import dateToStr from "../../utils/dateToStr.js";
 
 const Posts = () => {
     const posts = useSelector((state) => state.posts)
+    const postsWith = posts.map((post) => ({
+        ...post,
+        publishedDate: new Date(post.publishedDate),
+    }))
     console.log(posts)
+
+
+
     return (
         <div>
             <div className={'d-flex justify-content-between align-items-center mt-5 mb-5'}>
@@ -13,7 +21,7 @@ const Posts = () => {
                 <Button as={Link}  to={`/post/add`} variant="outline-primary">Add post</Button>
             </div>
             <Row>
-                {posts.map((post) => (
+                {postsWith.map((post) => (
                     <Col className={'pb-2'} key={post.id}>
                         <Card style={{width: '18rem'}}>
                             <Card.Body>
@@ -23,8 +31,9 @@ const Posts = () => {
                                 </Card.Text>
                             </Card.Body>
                             <ListGroup className="list-group-flush">
-                                <ListGroup.Item>{post.content}</ListGroup.Item>
-                                <ListGroup.Item>{post.publishedDate}</ListGroup.Item>
+                                <ListGroup.Item  dangerouslySetInnerHTML={{ __html: post.content }}></ListGroup.Item>
+                                <ListGroup.Item>{post.publishedDate.toLocaleDateString('pl-Pl')}</ListGroup.Item>
+                                <ListGroup.Item>{post.category}</ListGroup.Item>
                                 <ListGroup.Item>{post.author}</ListGroup.Item>
                             </ListGroup>
                             <Card.Body>

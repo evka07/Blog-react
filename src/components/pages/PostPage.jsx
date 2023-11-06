@@ -6,12 +6,12 @@ import DeleteModal from '../views/Modal/DeleteModal.jsx';
 import { deletePost } from '../../redux/postsRedux.js';
 import dateToStr from "../../utils/dateToStr.js";
 
-
 const PostPage = () => {
     const { id } = useParams();
     const post = useSelector((state) =>
         state.posts.find((post) => post.id === id)
     );
+    const categories = useSelector(state => state.categories);
     const navigation = useNavigate();
     const dispatch = useDispatch();
     const [showDelete, setShowDelete] = useState(false);
@@ -37,9 +37,10 @@ const PostPage = () => {
                                 <Card.Text>{post.shortDescription}</Card.Text>
                             </Card.Body>
                             <ListGroup className="list-group-flush">
-                                <ListGroup.Item>{post.content}</ListGroup.Item>
-                                <ListGroup.Item>{dateToStr(post.publishedDate)}</ListGroup.Item>
+                                <ListGroup.Item  dangerouslySetInnerHTML={{ __html: post.content }}/>
+                                <ListGroup.Item>{post.publishedDate.toLocaleDateString('pl-Pl')}</ListGroup.Item>
                                 <ListGroup.Item>{post.author}</ListGroup.Item>
+                                <ListGroup.Item>Category: {post.category}</ListGroup.Item>
                             </ListGroup>
                             <Card.Body>
                                 <Link to={`/post/${post.id}`}>

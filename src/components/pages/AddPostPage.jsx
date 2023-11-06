@@ -27,6 +27,7 @@ const AddPostPage = () => {
                 title: '',
                 shortDescription: '',
                 content: '',
+                category: '',
                 author: '',
                 publishedDate: '',
             }}
