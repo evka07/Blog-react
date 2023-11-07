@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { useForm } from 'react-hook-form';
+import {useForm} from 'react-hook-form';
 import initialState from '../../../redux/initialState';
 
-const PostForm = ({ action, actionText, initialData, onSubmit }) => {
+const PostForm = ({action, actionText, initialData, onSubmit}) => {
     const [formData, setFormData] = useState(initialData);
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const {register, handleSubmit, formState: {errors}} = useForm();
     const [contentError, setContentError] = useState(false);
     const [dateError, setDateError] = useState(false);
 
     const handleInput = (e) => {
-        const { name, value } = e.target;
+        const {name, value} = e.target;
         setFormData({
             ...formData,
             [name]: value,
@@ -33,16 +33,19 @@ const PostForm = ({ action, actionText, initialData, onSubmit }) => {
         } else {
             setContentError(false);
         }
-
         if (!data.publishedDate) {
-            setDateError(true);
+            setDateError(true)
+
         } else {
-            setDateError(false);
+            setDateError(false)
         }
 
-        if (data.content && data.publishedDate) {
-            onSubmit(data);
+        if (data.content && formData.publishedDate) {
+            const {title, author, shortDescription, content, category, publishedDate } = data
+            const newData = {title, author, shortDescription, content, category, publishedDate}
+            onSubmit(newData)
         }
+
     };
 
     return (
@@ -54,7 +57,7 @@ const PostForm = ({ action, actionText, initialData, onSubmit }) => {
                     name="title"
                     {...register('title', {
                         required: 'Title is required',
-                        minLength: { value: 3, message: 'Title too short' },
+                        minLength: {value: 3, message: 'Title too short'},
                     })}
                 />
                 {errors.title && (
@@ -70,7 +73,7 @@ const PostForm = ({ action, actionText, initialData, onSubmit }) => {
                     name="shortDescription"
                     {...register('shortDescription', {
                         required: 'Short Description is required',
-                        minLength: { value: 20, message: 'Short Description too short' },
+                        minLength: {value: 20, message: 'Short Description too short'},
                     })}
                 />
                 {errors.shortDescription && (
@@ -113,7 +116,7 @@ const PostForm = ({ action, actionText, initialData, onSubmit }) => {
             </div>
             <div>
                 <label htmlFor="category">Category</label>
-                <select name="category" {...register('category', { required: 'Category required' })}>
+                <select name="category" {...register('category', {required: 'Category required'})}>
                     <option value="">Please select</option>
                     {initialState.categories.map((category) => (
                         <option value={category} key={category}>
