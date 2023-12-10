@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {addPost} from "../../redux/postsRedux.js";
 import PostForm from "../views/PostForm/PostForm.jsx";
+import shortid from "shortid";
 
 const AddPostPage = () => {
     const navigate = useNavigate()
@@ -11,7 +12,8 @@ const AddPostPage = () => {
 
     const handleSubmit = (formData) => {
         const newPost = {
-            id:new Date().toISOString(),
+            id: shortid(),
+            publishedDate: formData.publishedDate.toISOString(),
             ...formData,
         }
         dispatch(addPost(newPost))
@@ -21,17 +23,17 @@ const AddPostPage = () => {
     return (
         <div>
             <PostForm
-            action={addPost}
-            actionText={"Add Post"}
-            initialData={{
-                title: '',
-                shortDescription: '',
-                content: '',
-                category: '',
-                author: '',
-                publishedDate: '',
-            }}
-            onSubmit={handleSubmit}
+                action={addPost}
+                actionText={"Add Post"}
+                initialData={{
+                    title: '',
+                    shortDescription: '',
+                    content: '',
+                    category: '',
+                    author: '',
+                    publishedDate: new Date(),
+                }}
+                onSubmit={handleSubmit}
             />
 
 

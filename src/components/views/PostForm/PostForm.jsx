@@ -12,14 +12,6 @@ const PostForm = ({action, actionText, initialData, onSubmit}) => {
     const [contentError, setContentError] = useState(false);
     const [dateError, setDateError] = useState(false);
 
-    const handleInput = (e) => {
-        const {name, value} = e.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
-    };
-
     const handleDateChange = (date) => {
         setFormData({
             ...formData,
@@ -28,21 +20,21 @@ const PostForm = ({action, actionText, initialData, onSubmit}) => {
     };
 
     const customSubmit = (data) => {
-        if (!data.content) {
+        if (!formData.content) {
             setContentError(true);
         } else {
             setContentError(false);
         }
-        if (!data.publishedDate) {
+        if (!formData.publishedDate) {
             setDateError(true)
 
         } else {
             setDateError(false)
         }
 
-        if (data.content && formData.publishedDate) {
-            const {title, author, shortDescription, content, category, publishedDate } = data
-            const newData = {title, author, shortDescription, content, category, publishedDate}
+        if (formData.content && formData.publishedDate) {
+            const {title, author, shortDescription, category} = data
+            const newData = {title, author, shortDescription, content: formData.content, category, publishedDate: formData.publishedDate }
             onSubmit(newData)
         }
 

@@ -14,6 +14,7 @@ const EditPostPage = () => {
         const updatePost = {
             ...post,
             ...formData,
+            publishedDate: formData.publishedDate.toISOString(),
         }
         dispatch(editPost(updatePost))
         navigate('/')
@@ -23,10 +24,13 @@ const EditPostPage = () => {
     return (
         <div>
             <PostForm
-            action={editPost}
-            actionText={"Edit post"}
-            initialData={post}
-            onSubmit={handleEdit}
+                action={editPost}
+                actionText={"Edit post"}
+                initialData={{
+                    ...post,
+                    publishedDate: new Date(post.publishedDate),
+                }}
+                onSubmit={handleEdit}
             />
 
 
