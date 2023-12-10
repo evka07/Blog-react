@@ -8,7 +8,9 @@ import initialState from '../../../redux/initialState';
 
 const PostForm = ({action, actionText, initialData, onSubmit}) => {
     const [formData, setFormData] = useState(initialData);
-    const {register, handleSubmit, formState: {errors}} = useForm();
+    const {register, handleSubmit, formState: {errors}} = useForm({
+        defaultValues:initialData,
+    });
     const [contentError, setContentError] = useState(false);
     const [dateError, setDateError] = useState(false);
 
@@ -40,6 +42,14 @@ const PostForm = ({action, actionText, initialData, onSubmit}) => {
 
     };
 
+    const handleInputChange = (e) => {
+        const {name, value} = e.target
+        setFormData({
+            ...formData,
+            [name]: value,
+        })
+    }
+
     return (
         <form onSubmit={handleSubmit(customSubmit)}>
             <div>
@@ -47,6 +57,7 @@ const PostForm = ({action, actionText, initialData, onSubmit}) => {
                 <input
                     type="text"
                     name="title"
+
                     {...register('title', {
                         required: 'Title is required',
                         minLength: {value: 3, message: 'Title too short'},
@@ -109,7 +120,7 @@ const PostForm = ({action, actionText, initialData, onSubmit}) => {
             <div>
                 <label htmlFor="category">Category</label>
                 <select name="category" {...register('category', {required: 'Category required'})}>
-                    <option value="">Please select</option>
+                    <option value=''>Please select</option>
                     {initialState.categories.map((category) => (
                         <option value={category} key={category}>
                             {category}

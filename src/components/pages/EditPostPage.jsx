@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import PostForm from "../views/PostForm/PostForm.jsx";
 import {editPost} from "../../redux/postsRedux.js";
 
+
 const EditPostPage = () => {
     const {id} = useParams()
     const navigate = useNavigate()
@@ -20,6 +21,8 @@ const EditPostPage = () => {
         navigate('/')
     }
 
+    console.log(post)
+
 
     return (
         <div>
@@ -28,7 +31,7 @@ const EditPostPage = () => {
                 actionText={"Edit post"}
                 initialData={{
                     ...post,
-                    publishedDate: new Date(post.publishedDate),
+                    publishedDate: new Date(),
                 }}
                 onSubmit={handleEdit}
             />

@@ -38,7 +38,9 @@ const PostPage = () => {
                             </Card.Body>
                             <ListGroup className="list-group-flush">
                                 <ListGroup.Item  dangerouslySetInnerHTML={{ __html: post.content }}/>
-                                <ListGroup.Item>{post.publishedDate}</ListGroup.Item>
+                                <ListGroup.Item>
+                                    {post.publishedDate ? post.publishedDate.toLocaleDateString('pl-Pl') : 'No date'}
+                                </ListGroup.Item>
                                 <ListGroup.Item>{post.author}</ListGroup.Item>
                                 <ListGroup.Item>Category: {post.category}</ListGroup.Item>
                             </ListGroup>
