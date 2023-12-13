@@ -9,6 +9,9 @@ import {Container} from "react-bootstrap";
 import NavBar from "./components/views/NavBar/NavBar.jsx";
 import Footer from "./components/views/Footer/Footer.jsx";
 import DeleteModal from "./components/views/Modal/DeleteModal.jsx";
+import Categories from "./components/pages/Categories.jsx";
+import CategoryPostPage from "./components/pages/CategoryPostPage.jsx";
+import Posts from "./components/features/Posts.jsx";
 
 
 
@@ -23,6 +26,8 @@ function App() {
             <Route path='/post/edit/:id' element={<EditPostPage/>}/>
             <Route path='/post/:id' element={<PostPage/>}/>
             <Route path='/about' element={<AboutPage/>}/>
+            <Route path='/categories' element={<Categories/>}/>
+            <Route path='/categories/:category' element={<Posts/>}/>
             <Route path='*' element={<NotFound/>}/>
         </Routes>
         <Footer/>

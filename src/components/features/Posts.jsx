@@ -1,12 +1,15 @@
 import React from 'react';
 import {Button, Card, Col, ListGroup, Row} from "react-bootstrap";
 import {useSelector} from "react-redux";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import dateToStr from "../../utils/dateToStr.js";
 
 const Posts = () => {
+    const {category} = useParams()
     const posts = useSelector((state) => state.posts)
-    const postsWith = posts.map((post) => ({
+
+    const filteredPosts = category ?  posts.filter((post) => post.category === category) : posts;
+    const postsWith = filteredPosts.map((post) => ({
         ...post,
         publishedDate: new Date(post.publishedDate),
     }))

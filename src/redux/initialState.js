@@ -1,4 +1,5 @@
 const initialState ={
+    categories: ['Sport', 'News', 'Movies'],
     posts: [
         {
             id: '1',
@@ -32,7 +33,7 @@ const initialState ={
 
     ],
     user: null,
-    categories: ['Sport', 'News', 'Movies'],
+
     selectedCategory: ''
 }
 

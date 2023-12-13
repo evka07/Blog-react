@@ -12,6 +12,7 @@ const PostPage = () => {
         state.posts.find((post) => post.id === id)
     );
     const categories = useSelector(state => state.categories);
+
     const navigation = useNavigate();
     const dispatch = useDispatch();
     const [showDelete, setShowDelete] = useState(false);
